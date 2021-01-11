@@ -5,3 +5,7 @@
     --board-bg-color: #f7e8aa;
     --stone-shadow: #3d3d3d4f;
 }
+
+body {
+    font-family: Microsoft YaHei;
+}

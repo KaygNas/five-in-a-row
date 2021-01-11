@@ -1,25 +1,24 @@
 import "./StonePoint.css"
 import Stone from "../Stone/Stone"
+import { Point } from "../../App"
 
 type Props = {
-    className: string
-    dataset: {
-        x: number
-        y: number
-    }
+    point: Point
 }
 
-export default function StonePoint({ className, dataset }: Props) {
+export default function StonePoint({ point }: Props) {
     return (
         <div
-            className={`stone-point-wraper ${className}`}
-            data-x={dataset.x}
-            data-y={dataset.y}
+            className={`stone-point-wrapper ${
+                point.isStarPoint ? "star-point" : ""
+            }`}
+            data-x={point.x}
+            data-y={point.y}
             onClick={(e) => (e.target = e.currentTarget)}
         >
             <div className="stone-point__hr-line"></div>
             <div className="stone-point__v-line"></div>
-            <Stone></Stone>
+            {point.isWithStone && <Stone type={point.stoneType}></Stone>}
         </div>
     )
 }

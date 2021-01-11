@@ -1,6 +1,7 @@
 import { useReducer, useState } from "react"
 import "./App.css"
 import GoBoard from "./components/GoBoard/GoBoard"
+import PlayStatus from "./components/PlayStatus/PlayStatus"
 
 export type GoBoardSize = {
     name: string
@@ -8,7 +9,7 @@ export type GoBoardSize = {
 }
 
 type GoBoardSizes = {
-    readonly [size: string]: GoBoardSize
+    [size: string]: GoBoardSize
 }
 
 const GOBOARD_SIZES: GoBoardSizes = {
@@ -20,8 +21,11 @@ type StarPointsPos = {
     [type: string]: { x: number; y: number }[]
 }
 export type stoneRecords = {
-    [x: string]: {
-        [y: string]: Point
+    steps: { x: number; y: number }[]
+    records: {
+        [x: string]: {
+            [y: string]: Point
+        }
     }
 }
 
@@ -51,7 +55,13 @@ export const STAR_POINTS_POS: StarPointsPos = {
 }
 
 function App() {
-    const [stoneRecords, dispatch] = useReducer(stoneRecordsReducer, [])
+    const [stoneRecords, dispatch] = useReducer(stoneRecordsReducer, {
+        steps: [],
+        records: {}
+    })
+
+
+
     return (
         <div>
             <GoBoard
@@ -75,6 +85,8 @@ function stoneRecordsReducer(
     if (action.payload && action.payload.x && action.payload.y) {
         const x = action.payload.x
         const y = action.payload.y
+        const records = state.records
+        const steps = state.steps
         const point = {
             isWithStone: true,
             x,
@@ -85,19 +97,22 @@ function stoneRecordsReducer(
             stoneType
         ) => {
             return {
-                ...state,
-                [x]: {
-                    ...state[x],
-                    [y]: {
-                        ...point,
-                        stoneType
+                steps: [...steps, { x, y }],
+                records: {
+                    ...records,
+                    [x]: {
+                        ...records[x],
+                        [y]: {
+                            ...point,
+                            stoneType
+                        }
                     }
                 }
             } as stoneRecords
         }
 
         // 该点已经有子时不做操作
-        if (state[x][y]) {
+        if (records[x] && records[x][y]) {
             return state
         }
 
@@ -117,7 +132,7 @@ function stoneRecordsReducer(
         return newState
     }
 
-    return state
+    throw new Error(`action payload ${action.payload} is unavailable`)
 }
 
 export const playWhiteStoneOn: (

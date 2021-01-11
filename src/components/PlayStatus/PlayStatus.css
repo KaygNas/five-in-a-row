@@ -1,0 +1,25 @@
+.play-status-wrapper {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    background-color: var(--board-bg-color);
+    box-shadow: var(--board-bg-color) 0 0 8px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.play-status__current,
+.play-status__winner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.play-status__player {
+    margin-left: 20px;
+    margin-right: 20px;
+}

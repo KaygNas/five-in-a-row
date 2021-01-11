@@ -1,4 +1,11 @@
-.go-board-warper {
+.go-board-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.go-board-border {
     border: var(--board-border-color) 8px solid;
     display: flex;
     flex-direction: row;

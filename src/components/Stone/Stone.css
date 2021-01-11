@@ -1,8 +1,11 @@
 .stone {
+    display: inline-block;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    display: none;
+}
+
+.stone-point-wrapper .stone {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -11,18 +14,13 @@
 }
 
 .stone-color--white,
-.with-stone--white .stone,
-.stone-color--black,
-.with-stone--black .stone {
-    display: block;
+.stone-color--black {
     box-shadow: var(--stone-shadow) 0 3px 8px 0;
 }
-.stone-color--white,
-.with-stone--white .stone {
+.stone-color--white {
     background-color: #ffffff;
 }
 
-.stone-color--black,
-.with-stone--black .stone {
+.stone-color--black {
     background-color: #000;
 }
