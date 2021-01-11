@@ -1,0 +1,17 @@
+.go-board-warper {
+    border: var(--board-border-color) 8px solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.go-board {
+    background-color: var(--board-bg-color);
+}
+
+.go-board__row {
+    display: flex;
+    flex-direction: row;
+}

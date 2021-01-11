@@ -1,0 +1,28 @@
+.stone {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+.stone-color--white,
+.with-stone--white .stone,
+.stone-color--black,
+.with-stone--black .stone {
+    display: block;
+    box-shadow: var(--stone-shadow) 0 3px 8px 0;
+}
+.stone-color--white,
+.with-stone--white .stone {
+    background-color: #ffffff;
+}
+
+.stone-color--black,
+.with-stone--black .stone {
+    background-color: #000;
+}
